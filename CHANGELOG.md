@@ -13,4 +13,5 @@
 
 ### Features
 
-* 2020-03-26  根据os_family区分
+* 2020-03-26  预装了telnet，用于连接memcached
+* 2020-03-26  根据os_family区
