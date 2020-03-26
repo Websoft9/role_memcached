@@ -1,3 +1,7 @@
+- name: Install Telnet for Memcached connection
+  yum: 
+    name: telnet
+    
 - name: Install memcached
   yum: 
     name: memcached
