@@ -1,7 +1,7 @@
-- name: Memcached Version for Centos
+- name: Memcached Version for RedHat
   debug:
-    var: memcached_ver_centos.stdout
+    var: memcached_ver_redhat.stdout
 
-- name: Memcached Version for Ubuntu
+- name: Memcached Version for Debian
   debug:
-    var: memcached_ver_ubuntu.stdout
+    var: memcached_ver_debian.stdout

@@ -1,0 +1,20 @@
+- name: Install memcached
+  yum: 
+    name: memcached
+
+- name: Start memcached
+  service:
+    name: memcached
+    enabled: yes
+    state: restarted
+
+- name: Check Memcached Version
+  shell: yum info memcached | grep Version
+  register: memcached_ver_redhat
+  notify: Memcached Version for RedHat
+
+- name: Create a Memcached symbolic link
+  file:
+    src: /etc/sysconfig/memcached
+    dest: /data/config/memcached.conf
+    state: link
