@@ -1,3 +1,7 @@
+- name: Install Telnet for Memcached connection
+  apt: 
+    name: telnet
+
 - name: Install memcached
   apt: 
     name: memcached
