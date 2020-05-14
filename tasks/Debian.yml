@@ -13,9 +13,7 @@
     state: restarted
 
 - name: Check Memcached Version
-  shell: apt-cache show memcached | grep Version | head -n1
-  register: memcached_ver_debian
-  notify: Memcached Version for Debian
+  shell: sudo sh -c "apt-cache show memcached | grep Version | head -n1 1>> /data/logs/install_version.txt"
 
 - name: Create a Memcached symbolic link
   file:
