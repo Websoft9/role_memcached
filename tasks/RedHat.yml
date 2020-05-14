@@ -15,8 +15,7 @@
 - name: Check Memcached Version
   shell: sudo sh -c 'echo "Memcached $(yum info memcached | grep Version)" 1>> /data/logs/install_version.txt'
 
-- name: Create a Memcached symbolic link
-  file:
-    src: /etc/sysconfig/memcached
-    dest: /data/config/memcached.conf
-    state: link
+# set soft link, -b cover the exist links
+# ln -sb src des
+- name: set soft link
+  shell: ln -sb /etc/sysconfig/memcached  /data/config/memcached.conf
