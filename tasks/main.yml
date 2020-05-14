@@ -3,3 +3,6 @@
 
 - import_tasks: Debian.yml
   when: ansible_os_family == 'Debian'
+ 
+- name: Check Memcached Version
+  shell: sudo sh -c "memcached -h | grep memcached | sed -n 1p 1>> /data/logs/install_version.txt"
