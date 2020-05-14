@@ -1,7 +1,1 @@
-- name: Memcached Version for RedHat
-  debug:
-    var: memcached_ver_redhat.stdout
 
-- name: Memcached Version for Debian
-  debug:
-    var: memcached_ver_debian.stdout
