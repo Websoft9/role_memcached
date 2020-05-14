@@ -12,9 +12,6 @@
     enabled: yes
     state: restarted
 
-- name: Check Memcached Version
-  shell: sudo sh -c 'echo "Memcached $(yum info memcached | grep Version)" 1>> /data/logs/install_version.txt'
-
 # set soft link, -b cover the exist links
 # ln -sb src des
 - name: set soft link
