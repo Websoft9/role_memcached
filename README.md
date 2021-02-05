@@ -1,52 +1,61 @@
-Ansible Role: memcached
+Ansible Role: [Memcached](https://memcached.org/)
 =========
 
-本 Role 在 CentOS、Ubuntu 和 AmazonLinux 服务器上安装和配置 Memcached。
+This role is for you to install **Memcached** and its connection tool **telnet**  
+
+If you want this role to support more applications, you can [**submit Issues**](https://github.com/websoft9dev/role_memcached/issues/new/choose) for us.
 
 ## Requirements
 
-运行本 Role，请确认符合如下的必要条件：
+Make sure these requirements need before the installation:
 
 | **Items**      | **Details** |
 | ------------------| ------------------|
-| Operating system | CentOS7.x Ubuntu18.04 AmazonLinux|
-| Python 版本 | Python2  |
-| Python 组件 |    |
-| Runtime |  |
-
+| Operating system | CentOS7.x Ubuntu20.04 |
+| Python version | Python2 Python3 |
 
 ## Related roles
 
-本 Role 在语法上不依赖其他 role 的变量，但程序运行时需要确保已经运行: common。以下为例：
+This Role does not depend on other role variables in syntax, but it depend on other role before:
 
 ```
-  roles:
-    - {role: role_common, tags: "role_common"}
-    - {role: role_cloud, tags: "role_cloud"}
-    - {role: role_memcached, tags: "role_memcached"}
+roles:
+  - { role: role_common }
+  - { role：role_memcached }
 ```
 
 
 ## Variables
 
-暂无
+The main variables of this Role and how to use them are as follows:
+
+| **Items**      | **Details** | **Format**  | **Need to assignment** |
+| ------------------| ------------------|-----|-----|
+| memcached_version |"" | String | No |
+
 
 ## Example
 
 ```
-- name: Memcached
-  hosts: all
-  become: yes
-  become_method: sudo 
-  vars_files:
-    - vars/main.yml 
-
-  roles:
-    - {role: role_common, tags: "role_common"}
-    - {role: role_cloud, tags: "role_cloud"}
-    - {role: role_memcached, tags: "role_memcached"}
+memcached_version: ""
+  
 ```
+
+## Resources
+
+* [Documentation](https://support.websoft9.com/docs/memcached)
+* [Deploy by Image](https://apps.websoft9.com/memcached)
+* [Deploy by Script](https://github.com/websoft9/ansible-memcached)
+
+
+## License
+
+[LGPL-3.0](/License.md), Additional Terms: It is not allowed to publish free or paid image based on this repository in any Cloud platform's Marketplace.
+
+Copyright (c) 2016-present, Websoft9
 
 ## FAQ
 
+#### Can I install the latest version of Memcached?
+NO, you can only install it from the apt/yum repository 
 
