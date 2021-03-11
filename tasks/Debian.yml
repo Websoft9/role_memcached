@@ -1,16 +1,10 @@
-- name: Install Telnet for Memcached connection
+- name: Install 
   apt: 
     name: telnet
 
 - name: Install memcached
   apt: 
-    name: memcached
-
-- name: Start memcached
-  service:
-    name: memcached
-    enabled: yes
-    state: restarted
+    name: [memcached,libmemcached-tools]
 
 - name: Create a Memcached symbolic link
   file:
