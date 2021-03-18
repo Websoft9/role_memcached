@@ -12,7 +12,7 @@
   shell: sudo sh -c "memcached -h | grep memcached | sed -n 1p 1>> /data/logs/install_version.txt"
 
 # check service state
-  - name: Check Memcached Service
-    shell: systemctl status memcached | grep Active*
-    register: check_memcached_service
-    notify: check_memcached_service
+- name: Check Memcached Service
+  shell: systemctl status memcached | grep Active*
+  register: check_memcached_service
+  notify: check_memcached_service
