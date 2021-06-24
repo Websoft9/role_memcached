@@ -1,18 +1,31 @@
-- name: Install for {{ansible_os_family}} os family
-  include: "{{ansible_os_family}}.yml"
+- name: Delete memcached dir for sec_installation
+  shell: rm -rf /data/memcached 
 
-- name: Start memcached
-  service:
-    name: memcached
-    enabled: yes
-    state: restarted
+- name: Create dir for memcached
+  file:
+    path: "/data/memcached"
+    state: directory
+    recurse: yes
 
-# Check version    
-- name: Check Memcached Version
-  shell: sudo sh -c "memcached -h | grep memcached | sed -n 1p 1>> /data/logs/install_version.txt"
+- name: Clone memcached in Websoft9 
+  git:
+    repo: "{{memcached_git_url}}"
+    dest: "/data/memcached"
+
+- name: Rename filename and Run memcached using docker-compose 
+  shell: |
+    [ -f docker-compose-production.yml ] && mv docker-compose-production.yml docker-compose.yml
+    [ -f .env_all ] && mv .env_all .env
+    docker-compose up -d
+  args:
+    chdir: /data/memcached
 
 # check service state
-- name: Check Memcached Service
-  shell: systemctl status memcached | grep Active*
+- name: Check memcached Service     
+  shell: docker ps |grep memcached  
   register: check_memcached_service
   notify: check_memcached_service
+
+# check version
+- name: check memcached version
+  shell: sudo echo "memcached version:" `docker inspect memcached |grep VERSION |cut -d= -f2` |tee -a /data/logs/install_version.txt
